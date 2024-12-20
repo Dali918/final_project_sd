@@ -1,0 +1,4 @@
+# dataset file
+data/
+# weight files
+*.pt
