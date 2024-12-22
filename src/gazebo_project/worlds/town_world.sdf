@@ -418,7 +418,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://fire_station/meshes/fire_station.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire_station/3/files/meshes/fire_station.dae</uri>
             </mesh>
           </geometry>
           <material>
@@ -597,7 +597,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://police_station/meshes/police_station.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/police station/3/files/meshes/police_station.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -641,7 +641,7 @@
           <pose>0 -0.90360491 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://salon/meshes/salon.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/salon/3/files/meshes/salon.dae</uri>
             </mesh>
           </geometry>
         </visual>

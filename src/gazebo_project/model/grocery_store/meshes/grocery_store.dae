@@ -154,7 +154,7 @@
   </library_lights>
   <library_images>
     <image id="GroceryStore_psd">
-      <init_from>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/grocery_store/materials/textures/grocery_store_diffuse.jpg</init_from>
+      <init_from>model://grocery_store/materials/textures/grocery_store_diffuse.jpg</init_from>
     </image>
     <image id="GroceryStoreSpec_psd">
       <init_from>grocery_store_spec.jpg</init_from>

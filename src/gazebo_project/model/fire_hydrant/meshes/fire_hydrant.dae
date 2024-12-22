@@ -154,7 +154,7 @@
   </library_lights>
   <library_images>
     <image id="FireHydrant_Diffuse_tga">
-      <init_from>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/fire_hydrant/materials/textures/fire_hydrant_diffuse.png</init_from>
+      <init_from>model://fire_hydrant/materials/textures/fire_hydrant_diffuse.png</init_from>
     </image>
     <image id="FireHydrant_Spec_tga">
       <init_from>fire_hydrant_spec.png</init_from>

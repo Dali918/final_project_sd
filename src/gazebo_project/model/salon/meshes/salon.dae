@@ -153,7 +153,7 @@
   </library_lights>
   <library_images>
     <image id="Downtown_3_Diffuse_tga">
-      <init_from>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/salon/materials/textures/salon_diffuse.jpg</init_from>
+      <init_from>model://salon/materials/textures/salon_diffuse.jpg</init_from>
     </image>
     <image id="Downtown_3_Spec_tga">
       <init_from>salon_spec.jpg</init_from>

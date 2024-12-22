@@ -13,22 +13,32 @@ def generate_launch_description():
 
     # Set the Path to Robot Mesh Models for Loading in Gazebo Sim
     install_dir_path = get_package_prefix(package_description) + "/share"
+    # Add this after line 72 (after setting IGN_GAZEBO_RESOURCE_PATH)
+   
     model_path = os.path.join(package_directory, "model")
     mesh_path = os.path.join(package_directory, "meshes")
+     
 
     def get_model_paths():
         paths = []
         for model_dir in os.listdir(model_path):
             model_full_path = os.path.join(model_path, model_dir)
             if os.path.isdir(model_full_path):
+                #add the model directory itself
                 paths.append(model_full_path)
+                # add the parent model directory 
+                # Add the parent model directory
+                paths.append(os.path.dirname(model_full_path))
                 # Add materials/textures and materials/scripts path if it exists
-                textures_path = os.path.join(model_full_path, "materials", "textures")
-                if os.path.exists(textures_path):
-                    paths.append(textures_path)
-                scripts_path = os.path.join(model_full_path, "materials", "scripts")
-                if os.path.exists(scripts_path):
-                    paths.append(scripts_path)
+                materials_path = os.path.join(model_full_path, "materials")
+                if os.path.exists(materials_path):
+                    paths.append(materials_path)
+                    textures_path = os.path.join(materials_path, "textures")
+                    if os.path.exists(textures_path):
+                        paths.append(textures_path)
+                    scripts_path = os.path.join(materials_path, "scripts")
+                    if os.path.exists(scripts_path):
+                        paths.append(scripts_path)
                 # Add meshes path
                 meshes_path = os.path.join(model_full_path, "meshes")
                 if os.path.exists(meshes_path):
@@ -56,8 +66,18 @@ def generate_launch_description():
     else:
         os.environ["IGN_FUEL_URL"] = ":".join(fuel_servers)
 
-        
-    
+    # Add Model paths 
+    if "GAZEBO_MODEL_PATH" in os.environ:
+        os.environ["GAZEBO_MODEL_PATH"] += ":" + model_path
+    else:
+        os.environ["GAZEBO_MODEL_PATH"] = model_path
+
+    # Add IGN_FILE_PATH for additional resource resolution
+    if "IGN_FILE_PATH" in os.environ:
+        os.environ["IGN_FILE_PATH"] += ":" + ":".join(gazebo_resource_paths)
+    else:
+        os.environ["IGN_FILE_PATH"] = ":".join(gazebo_resource_paths)
+
     if "IGN_GAZEBO_RESOURCE_PATH" in os.environ:
         for resource_path in gazebo_resource_paths:
             if resource_path not in os.environ["IGN_GAZEBO_RESOURCE_PATH"]:
@@ -70,6 +90,9 @@ def generate_launch_description():
 
     world_file = f"{world}.sdf"
     world_file_path = os.path.join(package_directory, "worlds", world_file)
+
+    print("DEBUG -- world file path:",world_file_path)
+    
     world_config = LaunchConfiguration("world")
     declare_world_arg = DeclareLaunchArgument(
         "world", default_value=["-r ", world_file_path], description="SDF World File"
