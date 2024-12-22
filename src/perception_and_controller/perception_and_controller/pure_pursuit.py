@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist, Point
+from geometry_msgs.msg import Twist, Point, PoseStamped, PoseArray
 from nav_msgs.msg import Path
 from messages.msg import VehicleState # Import the custom message type for vehicle state
 import math
@@ -11,8 +11,6 @@ class PurePursuitController(Node):
         self.logger = self.get_logger()
         self.waypoints = []
 
-        
-
         """
         param that works: 
         self.wheelbase = 0.8
@@ -21,8 +19,10 @@ class PurePursuitController(Node):
         self.lookahead_distance =  2.0 * self.linear_velocity
         
         """
+
         # Vehicle Parameters
         self.wheelbase = 0.8
+
         # Tunable parameters
         self.k = 0.7 
         self.linear_velocity = 5.5
@@ -30,15 +30,14 @@ class PurePursuitController(Node):
 
         # Subscribe to /gazebo/vehicle_state topic
         self.subscription = self.create_subscription(
-            VehicleState,
-            '/gazebo/vehicle_state',
+            PoseArray,
+            '/pose_info',
             self.pose_callback,
             10)
 
-        # Subscribe to the path published by WaypointPublisher node
         self.path_subscriber = self.create_subscription(
-            Path,
-            '/vehicle_waypoints',
+            PoseStamped,
+            '/pose_msg',
             self.path_callback,
             10)
 
@@ -46,27 +45,36 @@ class PurePursuitController(Node):
         self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
         self.logger.info("Pure Pursuit Controller node started")
 
-    def path_callback(self, path_msg):
-        # Update the waypoints when a new path is received
-        self.waypoints = [(pose.pose.position.x, pose.pose.position.y) for pose in path_msg.poses]
+    def path_callback(self, target_msg):
+        # Update the waypoint when /pose_msg is received
+        self.target_pose = target_msg.pose
 
     def pose_callback(self, msg):
         if not self.waypoints:
-            # If no waypoints available, do nothing
+            self.logger.warn("No target waypoint received.")
             return
 
-        current_pose = msg.front_axle
+        current_pose = msg.poses[1]
         current_x = current_pose.x
         current_y = current_pose.y
-        yaw = msg.yaw
+        yaw = self.get_yaw_from_pose(current_pose)
+
+        # Use the single target waypoint from the /pose_msg topic
+        target_waypoint = (self.target_pose.position.x, self.target_pose.position.y)
 
         # Calculate and publish cmd_vel message
-        steering_angle = self.generate_control_output(current_x, current_y, yaw)
+        steering_angle = self.generate_control_output(current_x, current_y, yaw, target_waypoint)
         # Publish cmd_vel message
         twist = Twist()
         twist.linear.x = self.linear_velocity  # constant linear velocity
         twist.angular.z = self.steering_angle_to_angular_velocity(steering_angle)
         self.cmd_vel_publisher.publish(twist)
+
+    def get_yaw_from_pose(self, pose: Pose):
+        q = pose.orientation
+        siny_cosp = 2 * (q.w * q.z + q.x * q.y)
+        cosy_cosp = 1 - 2 * (q.y ** 2 + q.z ** 2)
+        return math.atan2(siny_cosp, cosy_cosp)
 
     def distance(self, point1, point2):
         return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
@@ -75,7 +83,7 @@ class PurePursuitController(Node):
         angular_velocity = math.tan(steering_angle) * self.linear_velocity / self.wheelbase
         return angular_velocity
 
-    def generate_control_output(self, current_x, current_y, yaw):
+    def generate_control_output(self, current_x, current_y, yaw, target_waypoint):
         """
         Calculates the steering angle required for path following (Use Pure Pursuit algorithm).
 
@@ -93,52 +101,16 @@ class PurePursuitController(Node):
         self.waypoints. The waypoints represent the path that the vehicle
         should follow, and the controller uses them along with self.wheelbase
         to calculate the optimal steering angle to stay on track.
-
-        Additional Notes:
-            The self.waypoints list automatically updates to reflect the planned trajectory of
-            the autonomous vehicle. This list serves as a repository of coordinates, representing
-            waypoints along the vehicle's trajectory. As the vehicle progresses, the list is
-            continuously updated based on its position, ensuring it contains only the waypoints
-            relevant to its current location and future path. The first index in the list
-            corresponds to the closest waypoint to the vehicle, prioritizing navigation towards
-            nearby points. Additionally, the list excludes waypoints that are behind the vehicle,
-            focusing solely on waypoints ahead to streamline navigation planning and decision-making
-            processes for control algorithms.
         """
 
-        if not self.waypoints:
-            return 0.0  # No waypoints available, return zero steering
-
-        # Find the closest waypoint ahead of the vehicle
-        closest_waypoint = None
-        min_distance = float('inf')
-        
-        for waypoint in self.waypoints:
-            distance = self.distance((current_x, current_y), waypoint)
-            
-            # Check if the waypoint is ahead of the vehicle
-            angle = math.atan2(waypoint[1] - current_y, waypoint[0] - current_x) - yaw
-            angle = (angle + math.pi) % (2 * math.pi) - math.pi  # Normalize angle
-            
-            if abs(angle) < math.pi / 2 and distance < min_distance:
-                closest_waypoint = waypoint
-                min_distance = distance
-        
-        if closest_waypoint is None:
-            return 0.0  # No valid waypoint found, return zero steering
-        
-        # Find the target waypoint at lookahead distance
-        target_waypoint = None
-        for waypoint in self.waypoints[self.waypoints.index(closest_waypoint):]:
-            if self.distance((current_x, current_y), waypoint) >= self.lookahead_distance:
-                target_waypoint = waypoint
-                break
-        
         if target_waypoint is None:
-            target_waypoint = self.waypoints[-1]  # Use the last waypoint if no suitable target found
+            self.logger.warn("No target waypoint received.")
+            return 
+        
+        target_x, target_y = target_waypoint
         
         # Calculate the steering angle using Pure Pursuit
-        alpha = math.atan2(target_waypoint[1] - current_y, target_waypoint[0] - current_x) - yaw
+        alpha = math.atan2(target_y - current_y, target_x - current_x) - yaw
         alpha = (alpha + math.pi) % (2 * math.pi) - math.pi  # Normalize angle
         
         # Calculate the steering angle
