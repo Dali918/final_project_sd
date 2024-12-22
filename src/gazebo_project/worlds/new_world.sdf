@@ -1,73 +1,7 @@
 <?xml version="1.0"?>
 
-<sdf version='1.7'>
-  <world name='default'>
-    <light name='sun' type='directional'>
-      <cast_shadows>1</cast_shadows>
-      <pose>0 0 10 0 -0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <constant>0.9</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
-    </light>
-    <model name='ground_plane'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-          <surface>
-            <contact>
-              <collide_bitmask>65535</collide_bitmask>
-              <ode/>
-            </contact>
-            <friction>
-              <ode>
-                <mu>100</mu>
-                <mu2>50</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='visual'>
-          <cast_shadows>0</cast_shadows>
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
+<sdf version='1.9'>
+  <world name='town_world'>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -79,7 +13,7 @@
     <scene>
       <ambient>0.4 0.4 0.4 1</ambient>
       <background>0.7 0.7 0.7 1</background>
-      <shadows>1</shadows>
+      <shadows>true</shadows>
     </scene>
     <audio>
       <device>default</device>
@@ -92,400 +26,52 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='road_plane'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <box>
-              <size>5 10 0.1</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <cast_shadows>0</cast_shadows>
-          <geometry>
-            <box>
-              <size>50 100 0.1</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/road_plane/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/road_plane/materials/textures</uri>
-              <name>vrc/plane</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-3.44747 0.037578 0 0 -0 0</pose>
-    </model>
-    <model name='school'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/school/meshes/school.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/school/meshes/school.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-23.6395 19.9616 0 0 -0 0</pose>
-    </model>
-    <model name='grocery_store'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <pose>0 0 4.04605 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>32.1985 17.5425 8.09209</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <pose>0 -1.96155 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/grocery_store/meshes/grocery_store.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>21.6189 -7.35148 0 0 -0 0</pose>
-    </model>
-    <model name='Gas Station'>
-      <static>1</static>
-      <link name='link'>
+    <gui fullscreen='false'>
+      <camera name='user_camera'>
+        <pose>32.6856 24.5837 6.74505 0 0.275643 2.3562</pose>
+        <view_controller>ortho</view_controller>
+        <projection_type>orthographic</projection_type>
+      </camera>
+    </gui>
+    <model name='ground_plane'>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+      <static>true</static>
+      <link name='ground'>
         <pose>0 0 0 0 -0 0</pose>
+        <enable_wind>false</enable_wind>
         <collision name='collision'>
           <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/gas_station/meshes/gas_station.dae</uri>
-            </mesh>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>150 150</size>
+            </plane>
           </geometry>
-          <max_contacts>10</max_contacts>
           <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
             <friction>
-              <torsional>
-                <ode/>
-              </torsional>
               <ode/>
             </friction>
+            <bounce/>
+            <contact/>
           </surface>
         </collision>
         <visual name='visual'>
           <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/gas_station/meshes/gas_station.dae</uri>
-            </mesh>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>150 150</size>
+            </plane>
           </geometry>
           <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/gas_station/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/gas_station/materials/textures</uri>
-              <name>GasStation/Diffuse</name>
-            </script>
-            <shader type='normal_map_tangent_space'>
-              <normal_map>GasStation_Normal.png</normal_map>
-            </shader>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>24.6557 43.3209 0 0 -0 0</pose>
-    </model>
-    <model name='House 2'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/meshes/house_2.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/meshes/house_2.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/materials/textures</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/materials/textures</uri>
-              <name>House_2/Diffuse</name>
-            </script>
-            <shader type='normal_map_tangent_space'>
-              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
-            </shader>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-24.4331 -44.1663 0 0 -0 0</pose>
-    </model>
-    <model name='House 2_0'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/meshes/house_2.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/meshes/house_2.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_2/materials/textures</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/materials/textures</uri>
-              <name>House_2/Diffuse</name>
-            </script>
-            <shader type='normal_map_tangent_space'>
-              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
-            </shader>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-25.2267 -30.3122 0 0 -0 0</pose>
-    </model>
-    <model name='House 3'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_3/meshes/house_3.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_3/meshes/house_3.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_3/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_3/materials/textures</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/materials/textures</uri>
-              <name>House_3/Diffuse</name>
-            </script>
-            <shader type='normal_map_tangent_space'>
-              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
-            </shader>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-22.8495 -19.2269 0 0 -0 0</pose>
-    </model>
-    <model name='House 1'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/meshes/house_1.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/meshes/house_1.dae</uri>
-              <scale>1.5 1.5 1.5</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/house_1/materials/textures</uri>
-              <name>House_1/Diffuse</name>
-            </script>
-            <shader type='normal_map_tangent_space'>
-              <normal_map>House_1_Normal.png</normal_map>
-            </shader>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-26.4082 -6.68841 0 0 -0 0</pose>
-    </model>
-    <model name='Construction Cone'>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <scale>10 10 10</scale>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/construction_cone/meshes/construction_cone.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <scale>10 10 10</scale>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/construction_cone/meshes/construction_cone.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
           <inertia>
             <ixx>1</ixx>
             <ixy>0</ixy>
@@ -494,343 +80,637 @@
             <iyz>0</iyz>
             <izz>1</izz>
           </inertia>
-          <mass>1</mass>
         </inertial>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
       </link>
-      <pose>4.23172 43.5267 0 0 -0 0</pose>
     </model>
-    <model name='fire_hydrant'>
-      <static>1</static>
+    <model name='road_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>50 100 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh
+              filename="package://gazebo_project/meshes/road_plane.dae"
+              scale="1 1 1" />
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-3.44747 0.17578 0.05 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='school'>
+      <static>true</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/fire_hydrant/meshes/fire_hydrant.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/school/3/files/meshes/school.dae</uri>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/school/3/files/meshes/school.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-36.6395 19.9616 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='grocery_store'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 4.046044867 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>32.1985 17.5425 8.09209</size>
+            </box>
+          </geometry>
           <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
             <friction>
-              <torsional>
-                <ode/>
-              </torsional>
               <ode/>
             </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 -1.961551703 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/grocery store/3/files/meshes/grocery_store.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>33.1363 -7.35147 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='fire_station'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='main'>
+          <pose>0 -0.135 5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>19.98 9.68 10</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='front_top'>
+          <pose>0 4.957 7.0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.515 6</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='column_0'>
+          <pose>9.333 4.957 2.0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='column_1'>
+          <pose>3.33 4.957 2.0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='column_2'>
+          <pose>-3.33 4.957 2.0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='column_3'>
+          <pose>-9.333 4.957 2.0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_back'>
+          <pose>0 -2.742 10.467 0.25 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_front'>
+          <pose>0 3.12 10.467 -0.25 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_base'>
+          <pose>0 0.188 9.705 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 11.86 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_filling_0'>
+          <pose>0 0.188 9.985 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 9.53 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_filling_1'>
+          <pose>0 0.188 10.14 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 8.41 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_filling_2'>
+          <pose>0 0.188 10.42 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.25 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_filling_3'>
+          <pose>0 0.188 10.7 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 4.05 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='roof_filling_4'>
+          <pose>0 0.188 10.98 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 1.83 0.28</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
           </surface>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/fire_hydrant/meshes/fire_hydrant.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire station/3/files/meshes/fire_station.dae</uri>
             </mesh>
           </geometry>
         </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
       </link>
-      <pose>3.48085 41.7854 0 0 -0 0</pose>
+      <pose>26.3512 31.3209 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='apartment_2'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/meshes/apartment.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/meshes/apartment.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-33.8719 -16.6884 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='construction_cone'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <scale>10 10 10</scale>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>10 10 10</scale>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>4.23172 47.8953 0 0 -0 0</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='fire_hydrant'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire hydrant/3/files/meshes/fire_hydrant.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire hydrant/3/files/meshes/fire_hydrant.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>3.48085 46.1993 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
     </model>
     <model name='police_station'>
-      <static>1</static>
+      <static>true</static>
       <link name='link'>
         <collision name='collision_main'>
-          <pose>0 0 4.28998 0 -0 0</pose>
+          <pose>0 0 4.289977323 0 0 0</pose>
           <geometry>
             <box>
               <size>13.037 13.037 8.57995</size>
             </box>
           </geometry>
-          <max_contacts>10</max_contacts>
           <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
             <friction>
-              <torsional>
-                <ode/>
-              </torsional>
               <ode/>
             </friction>
+            <bounce/>
+            <contact/>
           </surface>
         </collision>
         <collision name='collision_landing'>
-          <pose>0 0 0.464086 0 -0 0</pose>
+          <pose>0 0 0.464086321 0 0 0</pose>
           <geometry>
             <box>
               <size>13.037 16.2446 0.928173</size>
             </box>
           </geometry>
-          <max_contacts>10</max_contacts>
           <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
             <friction>
-              <torsional>
-                <ode/>
-              </torsional>
               <ode/>
             </friction>
+            <bounce/>
+            <contact/>
           </surface>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/police_station/meshes/police_station.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/police station/3/files/meshes/police_station.dae</uri>
             </mesh>
           </geometry>
         </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
       </link>
-      <pose>21.7911 -36.6556 0 0 -0 0</pose>
+      <pose>26.8834 -36.6556 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
     </model>
     <model name='salon'>
-      <static>1</static>
+      <static>true</static>
       <link name='link'>
         <collision name='collision'>
-          <pose>0 0 5.69469 0 -0 0</pose>
+          <pose>0 0 5.694693596 0 0 0</pose>
           <geometry>
             <box>
               <size>7.21297 5.37875 11.3894</size>
             </box>
           </geometry>
-          <max_contacts>10</max_contacts>
           <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
             <friction>
-              <torsional>
-                <ode/>
-              </torsional>
               <ode/>
             </friction>
+            <bounce/>
+            <contact/>
           </surface>
         </collision>
         <visual name='visual'>
-          <pose>0 -0.903605 0 0 -0 0</pose>
+          <pose>0 -0.90360491 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/salon/meshes/salon.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/salon/3/files/meshes/salon.dae</uri>
             </mesh>
           </geometry>
         </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
       </link>
-      <pose>-13.3541 38.727 0 0 -0 0</pose>
+      <pose>-13.3541 50.0752 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
     </model>
-    <model name='Stop Sign'>
-      <static>1</static>
+    <model name='stop_sign'>
+      <static>true</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/stop_sign/meshes/stop_sign.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/stop_sign/meshes/stop_sign.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
           <material>
             <script>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/stop_sign/materials/scripts</uri>
-              <uri>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/stop_sign/materials/textures</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/materials/scripts</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/materials/textures</uri>
               <name>StopSign/Diffuse</name>
             </script>
           </material>
         </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
       </link>
       <pose>12.3049 2.67082 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
     </model>
-    <state world_name='default'>
-      <sim_time>1807 738000000</sim_time>
-      <real_time>24570 973010203</real_time>
-      <wall_time>1732071144 533472636</wall_time>
-      <iterations>1807738</iterations>
-      <model name='Construction Cone'>
-        <pose>4.23172 43.5267 -8e-06 1e-06 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>4.23172 43.5267 -8e-06 1e-06 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Gas Station'>
-        <pose>24.6557 43.3209 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>24.6557 43.3209 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='House 1'>
-        <pose>-26.4082 -6.68841 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-26.4082 -6.68841 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='House 2'>
-        <pose>-24.4331 -44.1663 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-24.4331 -44.1663 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='House 2_0'>
-        <pose>-25.2267 -30.3122 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-25.2267 -30.3122 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='House 3'>
-        <pose>-22.8495 -19.2269 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-22.8495 -19.2269 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Stop Sign'>
-        <pose>12.3049 2.67082 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>12.3049 2.67082 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='fire_hydrant'>
-        <pose>3.48085 41.7854 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>3.48085 41.7854 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='grocery_store'>
-        <pose>26.8988 -2.86514 0 0 -0 1.57412</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>26.8988 -2.86514 0 0 -0 1.57412</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='ground_plane'>
-        <pose>0 0 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0 0 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='police_station'>
-        <pose>21.7911 -36.6556 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>21.7911 -36.6556 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='road_plane'>
-        <pose>-3.44747 0.037578 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-3.44747 0.037578 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='salon'>
-        <pose>-13.3541 38.727 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-13.3541 38.727 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='school'>
-        <pose>-30.369 17.8454 0 0 -0 1.56496</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-30.369 17.8454 0 0 -0 1.56496</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
-      </light>
-    </state>
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose>32.6856 24.5837 6.74505 0 0.275643 2.3562</pose>
-        <view_controller>ortho</view_controller>
-        <projection_type>orthographic</projection_type>
-      </camera>
-    </gui>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.1 -0.9</direction>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
   </world>
 </sdf>

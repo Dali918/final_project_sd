@@ -22,8 +22,7 @@
       <origin rpy="1.57 0 1.57" xyz="0 0 0" />
       <geometry>
         <mesh>
-          <uri>file://$(find gazebo_project)/meshes/smart_car.obj</uri>
-          <scale>0.012 0.012 0.013</scale>
+          <uri>model://meshes/smart_car.obj</uri>
         </mesh>
       </geometry>
       <material name="white">
