@@ -154,7 +154,7 @@
   </library_lights>
   <library_images>
     <image id="PoliceStation_Diffuse_tga">
-      <init_from>file:///home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/install/gazebo_project/share/gazebo_project/model/police_station/materials/textures/police_station_diffuse.jpg</init_from>
+      <init_from>model://police_station/materials/textures/police_station_diffuse.jpg</init_from>
     </image>
     <image id="PoliceStation_Spec_tga">
       <init_from>police_station_spec.jpg</init_from>

@@ -18,9 +18,8 @@
 
 <export>
     <build_type>ament_python</build_type>
-    <gazebo_ros>
-      <gazebo_model_path>${prefix}/share/${project_name}/model</gazebo_model_path>
-      <gazebo_media_path>${prefix}/share/${project_name}/model</gazebo_media_path>
-    </gazebo_ros>
+      <gazebo_ros gazebo_model_path="${prefix}/share/${project_name}/model"/>
+      <gazebo_ros gazebo_media_path="${prefix}/share/${project_name}/model"/>
+      <gazebo_ros gazebo_resource_path="${prefix}/share/${project_name}/model"/>
   </export>
 </package>
