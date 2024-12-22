@@ -38,3 +38,11 @@ To run the controller module [**TODO**: has to be implemented], but generally
 ```
 ros2 run perception_and_controller controller
 ```
+
+# Making new branches 
+
+- Head to [ the remote branches page on the repo](https://github.com/Dali918/final_project_sd/branches/active)
+- Add a new branch with the format `name/what_you_are_working_on` e.g if you are working on camera stuff, `dalitso/camera`
+- head to the [main repo page](https://github.com/Dali918/final_project_sd), switch to the new branch you just created and get the https url for that branch on the `<code>` drop down button. 
+- ask chatgpt how to make a local branch and set it's upstream. Use the url of the branch you just created to set up your local branch to the remote branch 
+- run `git pull` in your local branch 
