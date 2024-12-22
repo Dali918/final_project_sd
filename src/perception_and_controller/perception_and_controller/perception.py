@@ -27,7 +27,7 @@ device = "cpu"
 class Perception(Node):
     
  
-    TRAINED_MODEL_PATH = "/home/dalitso/src/senior_design/Autonomous-Vehicle-End-to-End-Control-Project/src/perception_and_controller/Perception/epoch_39.pt"
+    TRAINED_MODEL_PATH = "/home/fenix/Documents/epoch_39.pt"
 
     def __init__(self, trained_model=TRAINED_MODEL_PATH):
         super().__init__('Perception')
@@ -38,7 +38,7 @@ class Perception(Node):
             10)
         self.pose_publisher = self.create_publisher(
             PoseStamped,
-            'pose_msg', 
+            '/pose_msg', 
             10                 
         )
 

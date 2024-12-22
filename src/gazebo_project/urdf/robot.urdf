@@ -21,10 +21,9 @@
     <visual name="chassis_visual">
       <origin rpy="1.57 0 1.57" xyz="0 0 0" />
       <geometry>
-        <mesh>
-          <uri>file://$(find gazebo_project)/meshes/smart_car.obj</uri>
-          <scale>0.012 0.012 0.013</scale>
-        </mesh>
+        <mesh filename="package://gazebo_project/meshes/smart_car.obj"
+          scale="0.012 0.012
+        0.013" />
       </geometry>
       <material name="white">
         <lighting>true</lighting>
