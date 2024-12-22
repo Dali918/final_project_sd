@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <sdf version='1.9'>
   <world name='town_world'>
     <gravity>0 0 -9.8</gravity>
@@ -123,6 +125,7 @@
       <pose>-3.44747 0.17578 0.05 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
     <model name='school'>
       <static>true</static>
       <link name='link'>
@@ -475,6 +478,9 @@
       <pose>-33.8719 -16.6884 0 0 -0 1.5708</pose>
       <self_collide>false</self_collide>
     </model>
+
+    
+
     <model name='construction_cone'>
       <link name='link'>
         <collision name='collision'>
@@ -512,6 +518,7 @@
       <static>false</static>
       <self_collide>false</self_collide>
     </model>
+
     <model name='fire_hydrant'>
       <static>true</static>
       <link name='link'>
@@ -547,6 +554,7 @@
       <pose>3.48085 46.1993 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
     <model name='police_station'>
       <static>true</static>
       <link name='link'>
@@ -605,6 +613,7 @@
       <pose>26.8834 -36.6556 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
     <model name='salon'>
       <static>true</static>
       <link name='link'>
@@ -649,29 +658,23 @@
       <pose>-13.3541 50.0752 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
     <model name='stop_sign'>
       <static>true</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
-          <material>
-            <script>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/materials/scripts</uri>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/materials/textures</uri>
-              <name>StopSign/Diffuse</name>
-            </script>
-          </material>
         </visual>
         <pose>0 0 0 0 -0 0</pose>
         <inertial>
@@ -688,9 +691,10 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>12.3049 2.67082 0 0 -0 0</pose>
+      <pose>4.23172 37.8953 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
     <light name='sun' type='directional'>
       <pose>0 0 10 0 -0 0</pose>
       <cast_shadows>true</cast_shadows>
