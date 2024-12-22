@@ -129,14 +129,14 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://school/meshes/school.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/school/3/files/meshes/school.dae</uri>
             </mesh>
           </geometry>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://school/meshes/school.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/school/3/files/meshes/school.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -180,7 +180,7 @@
           <pose>0 -1.961551703 0 0 0 0</pose>
           <geometry>
             <mesh>
-                <uri>model://grocery_store/meshes/grocery_store.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/grocery store/3/files/meshes/grocery_store.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -418,16 +418,9 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire_station/3/files/meshes/fire_station.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire station/3/files/meshes/fire_station.dae</uri>
             </mesh>
           </geometry>
-          <material>
-            <script>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire_station/3/files/materials/scripts</uri>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire_station/3/files/materials/textures</uri>
-              <name>FireStation/Diffuse</name>
-            </script>
-          </material>
         </visual>
         <pose>0 0 0 0 -0 0</pose>
         <inertial>
@@ -453,23 +446,16 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://apartment/meshes/apartment.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/meshes/apartment.dae</uri>
             </mesh>
           </geometry>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://apartment/meshes/apartment.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/meshes/apartment.dae</uri>
             </mesh>
           </geometry>
-          <material>
-            <script>
-              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/materials/scripts</uri>
-              <uri>https://fuel.gazebosim.org/1.0/chapulina/models/apartment/2/files/materials/textures</uri>
-              <name>Apartment/Diffuse</name>
-            </script>
-          </material>
         </visual>
         <pose>0 0 0 0 -0 0</pose>
         <inertial>
@@ -495,7 +481,7 @@
           <geometry>
             <mesh>
               <scale>10 10 10</scale>
-              <uri>model://construction_cone/meshes/construction_cone.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
             </mesh>
           </geometry>
         </collision>
@@ -503,7 +489,7 @@
           <geometry>
             <mesh>
               <scale>10 10 10</scale>
-              <uri>model://construction_cone/meshes/construction_cone.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -532,14 +518,14 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://fire_hydrant/meshes/fire_hydrant.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire hydrant/3/files/meshes/fire_hydrant.dae</uri>
             </mesh>
           </geometry>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://fire_hydrant/meshes/fire_hydrant.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/fire hydrant/3/files/meshes/fire_hydrant.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -669,14 +655,14 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
         </collision>
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/stop sign/3/files/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
           <material>
