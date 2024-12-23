@@ -93,15 +93,15 @@ class Perception(Node):
         if not hasattr(self, 'prev_left_middle'):
             self.prev_left_middle = 0
 
-        watch_pixel = 160
+        watch_pixel = 200
         left = pred[:,:w//2] # all pixels on left side of pred image are saved as 'left' array
         right = pred[:,w//2:] # all pixels on right side of pred image are saved as 'right' array
         min_left = 0 # minimum left point or leftmost column(y) of image
         start_h = 0    # which height to use for calculating the min 
 
         # First try with full height
-        left_middle = self.find_lane_points(left,is_left=True)
-        right_middle = self.find_lane_points(right,is_left=False) + w//2
+        left_middle = self.find_lane_points(left,start_h=watch_pixel,is_left=True)
+        right_middle = self.find_lane_points(right,start_h=watch_pixel,is_left=False) + w//2
 
         # Check lane distance
         LANE_DISTANCE_THRESHOLD = w//95   # Adjust based on testing
