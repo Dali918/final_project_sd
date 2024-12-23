@@ -33,6 +33,7 @@
         <projection_type>orthographic</projection_type>
       </camera>
     </gui>
+
     <model name='ground_plane'>
       <pose>0 0 0 0 -0 0</pose>
       <self_collide>false</self_collide>
@@ -83,6 +84,7 @@
         </inertial>
       </link>
     </model>
+
     <model name='road_plane'>
       <static>true</static>
       <link name='link'>
@@ -122,7 +124,7 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>-3.44747 0.17578 0.05 0 -0 0</pose>
+      <pose>-3.44747 0.17578 0.05 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
@@ -161,6 +163,7 @@
       <pose>-36.6395 19.9616 0 0 -0 1.5708</pose>
       <self_collide>false</self_collide>
     </model>
+
     <model name='grocery_store'>
       <static>true</static>
       <link name='link'>
@@ -479,46 +482,39 @@
       <self_collide>false</self_collide>
     </model>
 
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Construction Cone
+      </uri>
+      <name>cone_1</name>
+      <pose>12.8047 30.6078 0.05 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Construction Cone
+      </uri>
+      <name>cone_2</name>
+      <pose>-15.3894 -12.3659 0.05 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Construction Cone
+      </uri>
+      <name>cone_3</name>
+      <pose>-20.3914 20.1227 0.05 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Construction Cone
+      </uri>
+      <name>cone_4</name>
+      <pose>17.6044 -22.4912 0.05 0 -0 0</pose>
+    </include>
     
-
-    <model name='construction_cone'>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <scale>10 10 10</scale>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <scale>10 10 10</scale>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/construction cone/3/files/meshes/construction_cone.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <enable_wind>false</enable_wind>
-      </link>
-      <pose>4.23172 47.8953 0 0 -0 0</pose>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-
+  
     <model name='fire_hydrant'>
       <static>true</static>
       <link name='link'>
@@ -614,29 +610,28 @@
       <self_collide>false</self_collide>
     </model>
 
-    <model name='salon'>
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Salon
+      </uri>
+      <name>salon</name>
+      <pose>-13.3541 50.0752 0.1 0 -0 0</pose>
+    </include>
+
+    <model name='stop_sign1'>
       <static>true</static>
       <link name='link'>
         <collision name='collision'>
-          <pose>0 0 5.694693596 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>7.21297 5.37875 11.3894</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <pose>0 -0.90360491 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/salon/3/files/meshes/salon.dae</uri>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -655,11 +650,11 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>-13.3541 50.0752 0 0 -0 0</pose>
+      <pose>9.0635 -10.1258 0 0 -0 3.1416</pose>
       <self_collide>false</self_collide>
     </model>
 
-    <model name='stop_sign'>
+    <model name='stop_sign2'>
       <static>true</static>
       <link name='link'>
         <collision name='collision'>
@@ -691,7 +686,43 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>4.23172 37.8953 0 0 -0 0</pose>
+      <pose>-7.7379 -43.8431 0 0 -0 1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <model name='stop_sign3'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-12.0398 22.5613 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
 

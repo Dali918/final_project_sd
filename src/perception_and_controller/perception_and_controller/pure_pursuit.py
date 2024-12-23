@@ -45,11 +45,11 @@ class PurePursuitController(Node):
         self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
         self.logger.info("Pure Pursuit Controller node started")
 
-    def path_callback(self, target_msg):
+    def path_callback(self, target_msg: PoseStamped):
         # Update the waypoint when /pose_msg is received
         self.target_pose = target_msg.pose
 
-    def pose_callback(self, msg):
+    def pose_callback(self, msg: PoseArray):
         if not self.waypoints:
             self.logger.warn("No target waypoint received.")
             return
