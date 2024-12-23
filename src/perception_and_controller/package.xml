@@ -8,7 +8,6 @@
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
-  <depend>rclpy</depend>
   <depend>ament_index_python</depend>
   <depend>gazebo_project</depend>
   <depend>nav_msgs</depend>
