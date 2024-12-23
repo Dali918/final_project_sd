@@ -24,6 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
         'controller = perception_and_controller.controller:main',
+        'controllerTest = perception_and_controller.controller_test:main',
         'perception = perception_and_controller.perception:main',
         'real_time_plotter = perception_and_controller.real_time_plotter:main',
         ],
