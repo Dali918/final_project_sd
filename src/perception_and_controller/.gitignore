@@ -1,3 +1,4 @@
 models
+*.pt
 resource
 .vscode

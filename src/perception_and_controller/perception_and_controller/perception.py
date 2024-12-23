@@ -8,6 +8,7 @@ import cv2
 from cv_bridge import CvBridge
 
 import numpy as np
+import os
 import sensor_msgs_py.point_cloud2 as pc2
 import torch
 from Perception.model.unet import UNet
@@ -19,6 +20,9 @@ from tf2_ros.transform_listener import TransformListener
 
 from .rotation_utils import transform_pose
 
+from ament_index_python.packages import get_package_share_directory
+
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
@@ -27,7 +31,12 @@ device = "cpu"
 class Perception(Node):
     
  
-    TRAINED_MODEL_PATH = "/home/fenix/Documents/epoch_39.pt"
+    # Get the package's share directory
+    package_name = 'perception_and_controller'
+    package_share_dir = get_package_share_directory(package_name)
+
+    # Path to the model file in the models directory
+    TRAINED_MODEL_PATH = os.path.join(package_share_dir, 'models', 'epoch_39.pt')
 
     def __init__(self, trained_model=TRAINED_MODEL_PATH):
         super().__init__('Perception')
@@ -84,15 +93,15 @@ class Perception(Node):
         if not hasattr(self, 'prev_left_middle'):
             self.prev_left_middle = 0
 
-        watch_pixel = 160
+        watch_pixel = 200
         left = pred[:,:w//2] # all pixels on left side of pred image are saved as 'left' array
         right = pred[:,w//2:] # all pixels on right side of pred image are saved as 'right' array
         min_left = 0 # minimum left point or leftmost column(y) of image
         start_h = 0    # which height to use for calculating the min 
 
         # First try with full height
-        left_middle = self.find_lane_points(left,is_left=True)
-        right_middle = self.find_lane_points(right,is_left=False) + w//2
+        left_middle = self.find_lane_points(left,start_h=watch_pixel,is_left=True)
+        right_middle = self.find_lane_points(right,start_h=watch_pixel,is_left=False) + w//2
 
         # Check lane distance
         LANE_DISTANCE_THRESHOLD = w//95   # Adjust based on testing
