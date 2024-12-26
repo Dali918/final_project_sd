@@ -2,7 +2,7 @@ import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
+from launch_ros.actions import Node, SetParameter
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
@@ -13,6 +13,16 @@ def generate_launch_description():
     # Include the gazebo simulation launch file
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(gazebo_launch_file),
+    )
+    
+    # Launch RViz with specific configuration
+    rviz_config_dir = os.path.join(gazebo_pkg_dir, 'rviz', 'config.rviz')
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config_dir],
+        parameters=[{'use_sim_time': True}]
     )
     
     # Launch your perception node
@@ -42,30 +52,14 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}]
     )
     
-    # Add a static transform from world to base_link
-    world_to_base_link = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='world_to_base_link',
-        arguments=['0', '0', '0', '0', '0', '0', 'world', 'base_link'],
-        parameters=[{'use_sim_time': True}]
-    )
-
-    # Launch RViz
-    rviz_config_dir = os.path.join(gazebo_pkg_dir, 'rviz', 'config.rviz')
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', rviz_config_dir],
-        parameters=[{'use_sim_time': True}]
-    )
-    
+        
     return LaunchDescription([
-        gazebo_launch,
-        world_to_base_link,  # Add this before your nodes
+        SetParameter(name="use_sim_time", value=True),
+        gazebo_launch,        # Then launch gazebo 
         perception_node,
-        #controller_node,
-        #occupancy_grid_node,
+        # controller_node, 
+        # occupancy_grid_node,
         rviz_node,
+        # Other nodes...
     ])
+

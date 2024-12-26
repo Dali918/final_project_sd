@@ -190,7 +190,42 @@ class Perception(Node):
         pred = evaluate(self.model,current_frame)
         self.calculate_path(current_frame,pred)
     
-    
+    def transform_and_publish_pose(self, pose_msg: PoseStamped):
+        try:
+            # First check if transform is available
+            if not self.tf_buffer.can_transform(
+                "world",
+                pose_msg.header.frame_id,
+                rclpy.time.Time(),
+                timeout=rclpy.duration.Duration(seconds=1.0)
+            ):
+                self.get_logger().warn(
+                    f"Transform from {pose_msg.header.frame_id} to world not available yet..."
+                )
+                return
+
+            # Then do the transform
+            t = self.tf_buffer.lookup_transform(
+                "world",                     # target frame
+                pose_msg.header.frame_id,    # source frame
+                rclpy.time.Time(),           # get latest transform
+                timeout=rclpy.duration.Duration(seconds=1.0)
+            )
+            
+            # Transform the pose
+            pose_msg.pose = transform_pose(pose_msg.pose, t)
+            pose_msg.header.frame_id = "world"
+            
+            # Publish the transformed pose
+            self.pose_publisher.publish(pose_msg)
+
+        except TransformException as ex:
+            self.get_logger().warn(
+                f"Could not transform from {pose_msg.header.frame_id} to world: {ex}"
+            )
+            return
+        
+    """
     def transform_and_publish_pose(self,pose_msg : PoseStamped):
         try:
             t = self.tf_buffer.lookup_transform(
@@ -210,6 +245,8 @@ class Perception(Node):
             return
         
         self.pose_publisher.publish(self.pose_msg)
+    """
+    
 
         
 

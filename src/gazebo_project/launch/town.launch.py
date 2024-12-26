@@ -133,7 +133,7 @@ def generate_launch_description():
         "y", default_value="59.814", description="Model Spawn Y Axis Value"
     )
     declare_spawn_z = DeclareLaunchArgument(
-        "z", default_value="1.0", description="Model Spawn Z Axis Value"
+        "z", default_value="0.25", description="Model Spawn Z Axis Value"
     )
     declare_spawn_R = DeclareLaunchArgument(
         "R", default_value="0.0", description="Model Spawn Roll Value"

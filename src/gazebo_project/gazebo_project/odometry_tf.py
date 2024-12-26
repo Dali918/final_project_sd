@@ -13,7 +13,29 @@ class TfPublisherNode(Node):
             PoseArray, "/pose_info", self.pose_callback, 10  # Adjust QoS as needed
         )
         self.tf_broadcaster = TransformBroadcaster(self)
-        self.get_logger().info("Tf publisher node started.")
+        self.get_logger().info("Odometry Tf publisher node started.")
+        # Publish static world->odom transform immediately and periodically
+        self.world_to_odom_timer = self.create_timer(0.1, self.publish_world_to_odom)
+
+
+    def publish_world_to_odom(self):
+        # Create static transform from world to odom
+        transform = TransformStamped()
+        transform.header.stamp = self.get_clock().now().to_msg()
+        transform.header.frame_id = "world"
+        transform.child_frame_id = "odom"
+        # Match robot spawn position from town.launch.py
+        transform.transform.translation.x = 14.5075  # x
+        transform.transform.translation.y = 0.0  # y
+        transform.transform.translation.z = 0.25     # z
+        # Convert -1.5708 yaw to quaternion
+        transform.transform.rotation.w = 1.0
+        transform.transform.rotation.x = 0.0
+        transform.transform.rotation.y = 0.0
+        transform.transform.rotation.z = 0.0
+
+        self.tf_broadcaster.sendTransform(transform)
+        self.get_logger().debug("Published transform: world -> odom")
 
     def pose_callback(self, msg):
         if len(msg.poses) < 2:
@@ -28,7 +50,7 @@ class TfPublisherNode(Node):
         # Create a TransformStamped message
         transform = TransformStamped()
         transform.header.stamp = self.get_clock().now().to_msg()
-        transform.header.frame_id = "world"
+        transform.header.frame_id = "odom"
         transform.child_frame_id = "base_link"
         transform.transform.translation.x = pose.position.x
         transform.transform.translation.y = pose.position.y
@@ -40,7 +62,8 @@ class TfPublisherNode(Node):
 
         # Publish the transform
         self.tf_broadcaster.sendTransform(transform)
-        self.get_logger().debug("Published TF from world to base_link.")
+        self.get_logger().debug(f"Published transform: odom -> base_link")
+        #self.get_logger().debug("Published TF from world to base_link.")
 
 
 def main():
